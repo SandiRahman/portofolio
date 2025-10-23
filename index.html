@@ -6,7 +6,6 @@
   <title>Sandi Rahman — Portfolio</title>
   <meta name="description" content="Sandi Rahman — Developer, Organizer & Creative Thinker" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="icon" type="image/jpg" href="image.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -471,32 +470,41 @@
       justify-content:center;
       padding:20px;
       z-index:1000;
+      overflow-y: auto;
     }
     .modal-content{
       max-width:700px;
       width:100%;
       background:var(--card);
       border-radius:var(--radius);
-      padding:40px;
+      padding:60px 40px 40px 40px;
       border:1px solid rgba(255,255,255,0.08);
       box-shadow:0 30px 80px rgba(0,0,0,0.8);
       position:relative;
+      margin: auto;
+      max-height: 90vh;
+      overflow-y: auto;
     }
     .modal-close{
       position:absolute;
-      top:20px;right:20px;
-      background:rgba(255,255,255,0.05);
+      top:16px;right:16px;
+      background:rgba(255,255,255,0.1);
       border:none;
-      width:36px;height:36px;
+      width:40px;height:40px;
       border-radius:8px;
-      color:var(--muted);
-      font-size:20px;
+      color:var(--white);
+      font-size:24px;
       cursor:pointer;
       transition:all .3s;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
     }
     .modal-close:hover{
-      background:rgba(255,255,255,0.1);
-      color:var(--white);
+      background:rgba(255,255,255,0.2);
+      transform: rotate(90deg);
     }
 
     /* Responsive */
@@ -544,7 +552,7 @@
       <section class="hero">
         <div class="hero-left">
           <h1>
-            Hi guys gua <span class="gradient">Sandi</span>.<br>
+            Hai, guys gua <span class="gradient">Sandi</span>.<br>
             Developer & <span class="gradient">Gamer</span>.
           </h1>
           <p>
@@ -738,19 +746,19 @@
             </div>
             <div class="contact-item">
               <strong>💻 GitHub</strong>
-              <a href="https://github.com/SandiRahman" target="_blank">Github Sandi</a>
+              <a href="https://github.com/SandiRahman" target="_blank">github.com/SandiRahman</a>
             </div>
             <div class="contact-item">
               <strong>📷 Instagram</strong>
-              <a href="https://instagram.com/sandi_rhman" target="_blank">this is my Instagram account</a>
+              <a href="https://instagram.com/sandi" target="_blank">@sandi</a>
             </div>
             <div class="contact-item">
               <strong>🎵 Spotify</strong>
-              <a href="https://open.spotify.com/playlist/712dGZGNCQRuFn4mEG9YVD?si=o3MgHLvJS2OBSEDjKxgwbA" target="_blank">Spotify</a>
+              <a href="https://open.spotify.com/user/sandi" target="_blank">spotify/sandi</a>
             </div>
             <div class="contact-item">
               <strong>🎬 TikTok</strong>
-              <a href="https://tiktok.com/@sndirhman" target="_blank">My Tiktok Account</a>
+              <a href="https://tiktok.com/@sandi" target="_blank">@sandi</a>
             </div>
           </div>
 
