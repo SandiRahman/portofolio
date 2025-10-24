@@ -962,5 +962,104 @@
       }, 2000);
     }
   </script>
+
+  <!-- ========== GAME SECTION ========== -->
+<div class="card" id="game-section">
+  <h3 style="font-size:24px;margin-bottom:16px">Journey of Light</h3>
+  <p style="margin-bottom:8px;color:#aaa">Temukan pusat cahaya di tengah kegelapan.</p>
+  <canvas id="lightGame" width="500" height="300"
+    style="background:#000;border-radius:12px;display:block;margin:auto;"></canvas>
+</div>
+
+<script>
+const canvas = document.getElementById("lightGame");
+const ctx = canvas.getContext("2d");
+
+let player = { x: 250, y: 150, r: 8 };
+let lights = [];
+let glow = 0.08;
+let speed = 2.5;
+let keys = {};
+
+for (let i = 0; i < 10; i++) {
+  lights.push({
+    x: Math.random() * 480 + 10,
+    y: Math.random() * 280 + 10,
+    r: 6,
+    active: true
+  });
+}
+
+document.addEventListener("keydown", e => keys[e.key] = true);
+document.addEventListener("keyup", e => keys[e.key] = false);
+
+function movePlayer() {
+  if (keys["ArrowUp"] || keys["w"]) player.y -= speed;
+  if (keys["ArrowDown"] || keys["s"]) player.y += speed;
+  if (keys["ArrowLeft"] || keys["a"]) player.x -= speed;
+  if (keys["ArrowRight"] || keys["d"]) player.x += speed;
+  player.x = Math.max(player.r, Math.min(canvas.width - player.r, player.x));
+  player.y = Math.max(player.r, Math.min(canvas.height - player.r, player.y));
+}
+
+function checkCollision() {
+  lights.forEach(light => {
+    if (!light.active) return;
+    let dx = player.x - light.x;
+    let dy = player.y - light.y;
+    if (Math.sqrt(dx * dx + dy * dy) < player.r + light.r) {
+      light.active = false;
+      glow += 0.08;
+    }
+  });
+}
+
+function draw() {
+  // background gradually brightens
+  ctx.fillStyle = `rgba(0,0,0,${1 - glow})`;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // glowing aura
+  let gradient = ctx.createRadialGradient(player.x, player.y, 10, player.x, player.y, 100);
+  gradient.addColorStop(0, `rgba(255,255,200,${glow + 0.3})`);
+  gradient.addColorStop(1, "transparent");
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // draw active light points
+  lights.forEach(light => {
+    if (light.active) {
+      ctx.beginPath();
+      ctx.fillStyle = "rgba(255,255,180,0.9)";
+      ctx.arc(light.x, light.y, light.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  });
+
+  // draw player
+  ctx.beginPath();
+  ctx.fillStyle = "white";
+  ctx.arc(player.x, player.y, player.r, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function gameLoop() {
+  movePlayer();
+  checkCollision();
+  draw();
+
+  if (glow >= 1) {
+    ctx.fillStyle = "rgba(255,255,255,0.9)";
+    ctx.font = "24px monospace";
+    ctx.textAlign = "center";
+    ctx.fillText("✨ You found the Light ✨", canvas.width / 2, canvas.height / 2);
+  } else {
+    requestAnimationFrame(gameLoop);
+  }
+}
+
+gameLoop();
+</script>
+
 </body>
 </html>
