@@ -59,7 +59,6 @@
       z-index: 1;
     }
 
-    /* Header */
     header{
       display:flex;
       align-items:center;
@@ -117,7 +116,6 @@
       width: 100%;
     }
 
-    /* Hero Section */
     .hero{
       display:grid;
       grid-template-columns:1.2fr 1fr;
@@ -211,7 +209,6 @@
       margin-top:4px;
     }
 
-    /* Section Titles */
     .section-title{
       font-size:42px;
       font-weight:900;
@@ -242,7 +239,6 @@
       box-shadow:0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(139, 92, 246, 0.1);
     }
 
-    /* Skills & Hobbies */
     .grid-2{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -266,7 +262,6 @@
       transform:translateY(-2px);
     }
 
-    /* Hobbies Section - Special */
     .hobbies-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
@@ -309,7 +304,6 @@
       line-height:1.6;
     }
 
-    /* Projects */
     .projects-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
@@ -363,7 +357,6 @@
       border-top:1px solid rgba(255,255,255,0.05);
     }
 
-    /* Timeline */
     .timeline{
       display:flex;
       flex-direction:column;
@@ -423,7 +416,6 @@
       word-break: break-all;
     }
     
-    /* Form */
     input,textarea{
       width:100%;
       padding:14px 16px;
@@ -446,7 +438,6 @@
       resize:vertical;
     }
 
-    /* Footer */
     footer{
       margin-top:60px;
       padding-top:32px;
@@ -460,7 +451,6 @@
       gap:12px;
     }
 
-    /* Modal */
     .modal{
       display:none;
       position:fixed;
@@ -499,7 +489,6 @@
       color:var(--white);
     }
 
-    /* Responsive */
     @media (max-width:768px){
       .hero{
         grid-template-columns:1fr;
@@ -513,7 +502,6 @@
       nav{flex-wrap:wrap}
     }
 
-    /* Animations */
     @keyframes float{
       0%,100%{transform:translateY(0)}
       50%{transform:translateY(-10px)}
@@ -540,7 +528,6 @@
     </header>
 
     <main>
-      <!-- HERO -->
       <section class="hero">
         <div class="hero-left">
           <h1>
@@ -576,7 +563,6 @@
         </div>
       </section>
 
-      <!-- ABOUT & SKILLS -->
       <section id="about">
         <h2 class="section-title">About Me</h2>
         <p class="section-subtitle">Developer yang suka eksplorasi teknologi, organize event, apalagi game </p>
@@ -635,7 +621,6 @@
         </div>
       </section>
 
-      <!-- HOBBIES - SPECIAL SECTION -->
       <section id="hobbies">
         <h2 class="section-title">My Hobbies</h2>
         <p class="section-subtitle">Hal-hal yang aku suka lakuin di waktu luang</p>
@@ -675,7 +660,6 @@
         </div>
       </section>
 
-      <!-- PROJECTS -->
       <section id="projects">
         <h2 class="section-title">Selected Projects</h2>
         <p class="section-subtitle">Beberapa project yang paling aku suka</p>
@@ -718,7 +702,6 @@
         </p>
       </section>
 
-      <!-- CONTACT -->
       <section id="contact">
         <h2 class="section-title">Let's Connect</h2>
         <p class="section-subtitle">Kalau mau kerja bareng, ngobrol, mabar, atau yang lainnya chat aja yea</p>
@@ -764,7 +747,6 @@
     </main>
   </div>
 
-  <!-- Modal -->
   <div id="modal" class="modal" onclick="if(event.target === this) closeModal()">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal()">✕</button>
@@ -773,10 +755,8 @@
   </div>
 
   <script>
-    // Set year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Project modal content
     const projectData = {
       1: {
         title: 'IoT Enemy Detector',
@@ -899,7 +879,6 @@
       }
     };
 
-    // Open modal
     function openModal(projectId) {
       const modal = document.getElementById('modal');
       const modalBody = document.getElementById('modal-body');
@@ -912,19 +891,16 @@
       }
     }
 
-    // Close modal
     function closeModal() {
       const modal = document.getElementById('modal');
       modal.style.display = 'none';
       document.body.style.overflow = 'auto';
     }
 
-    // Close modal on ESC
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeModal();
     });
 
-    // Contact form
     function sendMail(e) {
       e.preventDefault();
       
@@ -939,18 +915,15 @@
         return;
       }
 
-      // Create mailto link
       const subject = encodeURIComponent(`Portfolio Contact: ${name}`);
       const body = encodeURIComponent(`Nama: ${name}\nEmail: ${email}\n\nPesan:\n${message}`);
       const mailtoLink = `mailto:sandirahmand13no2@gmail.com?subject=${subject}&body=${body}`;
 
-      // Open email client
       window.location.href = mailtoLink;
       
       status.textContent = '✅ Membuka email client...';
       status.style.color = 'var(--accent)';
       
-      // Reset form after short delay
       setTimeout(() => {
         e.target.reset();
         status.textContent = '';
@@ -958,7 +931,6 @@
     }
   </script>
 
-  <!-- ========== GAME SECTION ========== -->
 <div class="card" id="game-section">
   <h3 style="font-size:24px;margin-bottom:16px">Journey of Light</h3>
   <p style="margin-bottom:8px;color:#aaa">Temukan pusat cahaya di tengah kegelapan.</p>
@@ -1010,18 +982,15 @@ function checkCollision() {
 }
 
 function draw() {
-  // background gradually brightens
   ctx.fillStyle = `rgba(0,0,0,${1 - glow})`;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // glowing aura
   let gradient = ctx.createRadialGradient(player.x, player.y, 10, player.x, player.y, 100);
   gradient.addColorStop(0, `rgba(255,255,200,${glow + 0.3})`);
   gradient.addColorStop(1, "transparent");
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // draw active light points
   lights.forEach(light => {
     if (light.active) {
       ctx.beginPath();
@@ -1031,7 +1000,6 @@ function draw() {
     }
   });
 
-  // draw player
   ctx.beginPath();
   ctx.fillStyle = "white";
   ctx.arc(player.x, player.y, player.r, 0, Math.PI * 2);
